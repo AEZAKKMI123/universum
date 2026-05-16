@@ -55,9 +55,6 @@ function App() {
             <li><a href="#pricing">Cjenovnik</a></li>
             <li><a href="#contact">Kontakt</a></li>
           </ul>
-          <div className="nav-cta">
-            <a href="#contact" className="btn-small">Pridruži se</a>
-          </div>
         </div>
       </nav>
 
@@ -102,10 +99,10 @@ function App() {
             <p>Fitness Club Universum je jedan od najstarijih i najprepoznatljivijih fitnes centara u Sarajevu. Smješteni u modernom objektu Unipromet, nudimo vrhunsku opremu i atmosferu koja motiviše.</p>
             <p>Naša misija je pružiti profesionalnu podršku svim članovima. Uz stručno osoblje i najsavremenije sprave, vaš napredak je zagarantovan.</p>
             <div className="features">
-              <div className="feature"><CheckCircle size={18} /> 1000m² prostora</div>
-              <div className="feature"><CheckCircle size={18} /> Cardio zona</div>
-              <div className="feature"><CheckCircle size={18} /> Slobodni tegovi</div>
-              <div className="feature"><CheckCircle size={18} /> Stručni treneri</div>
+              <div className="feature"><span>✓</span> 1000m² prostora</div>
+              <div className="feature"><span>✓</span> Cardio zona</div>
+              <div className="feature"><span>✓</span> Slobodni tegovi</div>
+              <div className="feature"><span>✓</span> Stručni treneri</div>
             </div>
           </div>
           <motion.div 
@@ -146,7 +143,7 @@ function App() {
         </motion.div>
       </motion.section>
 
-      {/* Testimonials Section (New Opinion Addition) */}
+      {/* Testimonials Section */}
       <section className="testimonials">
         <div className="section-header">
           <h2>Šta kažu naši članovi</h2>
@@ -234,22 +231,12 @@ function App() {
         </div>
         <div className="contact-container">
           <div className="contact-info">
-            <h3>Informacije</h3>
-            <div className="contact-item">
-              <MapPin className="contact-icon" />
-              <span>Marka Marulića 2, Sarajevo (Unipromet)</span>
-            </div>
-            <div className="contact-item">
-              <Phone className="contact-icon" />
-              <span>033 867 591 / 062 123 079</span>
-            </div>
-            <div className="contact-item">
-              <Clock className="contact-icon" />
-              <div>
-                <p>Pon - Pet: 08:00 - 23:00</p>
-                <p>Sub - Ned: 11:00 - 22:00</p>
-              </div>
-            </div>
+            <h3>Gdje se nalazimo?</h3>
+            <p><strong>Adresa:</strong> Marka Marulića 2, Sarajevo (Unipromet)</p>
+            <p><strong>Telefon:</strong> 033 867 591 / 062 123 079</p>
+            <p><strong>Radno vrijeme:</strong></p>
+            <p>Pon - Pet: 08:00 - 23:00</p>
+            <p>Sub - Ned: 11:00 - 22:00</p>
           </div>
           <div className="contact-form">
             <form>
