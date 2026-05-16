@@ -7,16 +7,16 @@ import weightsImg from './assets/weights.png';
 import cardioImg from './assets/cardio.png';
 
 const fadeIn = {
-  initial: { opacity: 0, y: -100 },
+  initial: { opacity: 0, y: -150 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.2 },
-  transition: { duration: 0.8, ease: "easeOut" }
+  viewport: { once: true, amount: 0.1 },
+  transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] }
 };
 
 const slideDown = {
-  initial: { opacity: 0, y: -50 },
+  initial: { opacity: 0, y: -80 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.8, ease: "easeOut" }
+  transition: { duration: 1.5, ease: [0.16, 1, 0.3, 1] }
 };
 
 const staggerContainer = {
