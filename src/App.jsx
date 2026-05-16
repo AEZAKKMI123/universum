@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, MapPin, Clock, CheckCircle, Quote } from 'lucide-react';
+import { Phone, MapPin, Clock, CheckCircle, Quote, Menu, X } from 'lucide-react';
 import './App.css';
 import heroImg from './assets/hero.png';
 import weightsImg from './assets/weights.png';
@@ -27,6 +27,7 @@ const staggerContainer = {
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,6 +36,10 @@ function App() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   return (
     <div className="app">
@@ -48,13 +53,24 @@ function App() {
           >
             UNIVERSUM
           </motion.div>
-          <ul className="nav-links">
-            <li><a href="#home">Početna</a></li>
-            <li><a href="#about">O nama</a></li>
-            <li><a href="#gallery">Galerija</a></li>
-            <li><a href="#pricing">Cjenovnik</a></li>
-            <li><a href="#contact">Kontakt</a></li>
+          
+          {/* Mobile Menu Button */}
+          <div className="mobile-menu-btn" onClick={toggleMobileMenu}>
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </div>
+
+          <ul className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`}>
+            <li><a href="#home" onClick={() => setIsMobileMenuOpen(false)}>Početna</a></li>
+            <li><a href="#about" onClick={() => setIsMobileMenuOpen(false)}>O nama</a></li>
+            <li><a href="#gallery" onClick={() => setIsMobileMenuOpen(false)}>Galerija</a></li>
+            <li><a href="#pricing" onClick={() => setIsMobileMenuOpen(false)}>Cjenovnik</a></li>
+            <li><a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Kontakt</a></li>
           </ul>
+
+          {/* Mobile Overlay */}
+          {isMobileMenuOpen && (
+            <div className="mobile-overlay" onClick={() => setIsMobileMenuOpen(false)}></div>
+          )}
         </div>
       </nav>
 

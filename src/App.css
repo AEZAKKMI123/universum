@@ -393,6 +393,13 @@
 }
 
 /* Responsive */
+.mobile-menu-btn {
+  display: none;
+  cursor: pointer;
+  color: var(--text-color);
+  z-index: 1001;
+}
+
 @media (max-width: 1200px) {
   .hero-content h1 { font-size: 4rem; }
   .navbar { padding: 20px 5%; }
@@ -403,5 +410,116 @@
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  .nav-links { display: none; }
+  
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100vh;
+    background-color: #080808;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 1000;
+    gap: 30px;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    border-left: 1px solid var(--accent-blue);
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    transition: opacity 0.3s ease;
+  }
+
+  .nav-links a {
+    font-size: 1.5rem;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
 }
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+  }
+
+  .hero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+
+  .section-header h2 {
+    font-size: 2.2rem;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .gallery-item {
+    height: 200px;
+  }
+
+  .pricing-cards {
+    gap: 20px;
+  }
+
+  .pricing-card {
+    width: 100%;
+    max-width: 350px;
+    padding: 30px 20px;
+  }
+
+  .price {
+    font-size: 2.5rem;
+  }
+
+  .contact-info h3 {
+    font-size: 1.5rem;
+  }
+
+  .contact-info p {
+    font-size: 1rem;
+  }
+
+  .footer-col h4 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .footer-content {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+  
+  .nav-logo {
+    font-size: 1.8rem;
+  }
+}
+
