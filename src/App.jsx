@@ -36,6 +36,17 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToSection = (e, id) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }
+  };
+
   return (
     <div className="app">
       {/* Navbar */}
@@ -45,15 +56,17 @@ function App() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             className="nav-logo"
+            onClick={(e) => scrollToSection(e, 'home')}
+            style={{ cursor: 'pointer' }}
           >
             UNIVERSUM
           </motion.div>
           <ul className="nav-links">
-            <li><a href="#home">Početna</a></li>
-            <li><a href="#about">O nama</a></li>
-            <li><a href="#gallery">Galerija</a></li>
-            <li><a href="#pricing">Cjenovnik</a></li>
-            <li><a href="#contact">Kontakt</a></li>
+            <li><a href="#home" onClick={(e) => scrollToSection(e, 'home')}>Početna</a></li>
+            <li><a href="#about" onClick={(e) => scrollToSection(e, 'about')}>O nama</a></li>
+            <li><a href="#gallery" onClick={(e) => scrollToSection(e, 'gallery')}>Galerija</a></li>
+            <li><a href="#pricing" onClick={(e) => scrollToSection(e, 'pricing')}>Cjenovnik</a></li>
+            <li><a href="#contact" onClick={(e) => scrollToSection(e, 'contact')}>Kontakt</a></li>
           </ul>
         </div>
       </nav>
@@ -77,6 +90,7 @@ function App() {
               whileTap={{ scale: 0.95 }}
               href="#about" 
               className="btn"
+              onClick={(e) => scrollToSection(e, 'about')}
             >
               Saznaj više
             </motion.a>
