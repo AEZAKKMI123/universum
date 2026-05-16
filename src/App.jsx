@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Facebook, Instagram, Phone, MapPin, Clock, CheckCircle, Quote } from 'lucide-react';
+import { Phone, MapPin, Clock, CheckCircle, Quote } from 'lucide-react';
 import './App.css';
 import heroImg from './assets/hero.png';
 import weightsImg from './assets/weights.png';
@@ -269,8 +269,8 @@ function App() {
             <div className="nav-logo">UNIVERSUM</div>
             <p>Vodeći fitnes klub u Sarajevu sa tradicijom od preko 45 godina. Postanite dio naše zajednice.</p>
             <div className="footer-socials">
-              <a href="#"><Facebook size={20} /></a>
-              <a href="#"><Instagram size={20} /></a>
+              <a href="#" style={{ fontWeight: 'bold' }}>FB</a>
+              <a href="#" style={{ fontWeight: 'bold' }}>IG</a>
             </div>
           </div>
           <div className="footer-col">
