@@ -7,10 +7,10 @@ import weightsImg from './assets/weights.png';
 import cardioImg from './assets/cardio.png';
 
 const fadeIn = {
-  initial: { opacity: 0, y: 20 },
+  initial: { opacity: 0, y: -100 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-  transition: { duration: 0.6 }
+  viewport: { once: true, amount: 0.2 },
+  transition: { duration: 0.8, ease: "easeOut" }
 };
 
 const slideDown = {
