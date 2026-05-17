@@ -5,6 +5,7 @@ import './App.css';
 import heroImg from './assets/hero.png';
 import weightsImg from './assets/weights.png';
 import cardioImg from './assets/cardio.png';
+import mapScreenshotImg from './assets/map_screenshot.png';
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -281,20 +282,8 @@ function App() {
       ) : (
         /* Contact & Location Subpage */
         <div className="contact-page-wrapper">
-          {/* Contact Hero Section with Dark Google Map */}
-          <section className="contact-hero">
-            <div className="map-container dark-map">
-              <iframe 
-                title="Google Maps"
-                src="https://maps.google.com/maps?q=Fitness%20Club%20Universum,%20Marka%20Maruli%C4%87a%202,%20Sarajevo&t=&z=16&ie=UTF8&iwloc=&output=embed"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
+          {/* Contact Hero Section with Static Map Screenshot */}
+          <section className="contact-hero" style={{ backgroundImage: `linear-gradient(rgba(5, 5, 5, 0.75), rgba(5, 5, 5, 0.85)), url(${mapScreenshotImg})` }}>
             <div className="contact-hero-overlay">
               <motion.div 
                 initial={{ opacity: 0, y: 30 }}
@@ -425,6 +414,20 @@ function App() {
                 </form>
               </motion.div>
             </div>
+          </section>
+
+          {/* Interactive Google Map under "Lokacija" (No Spacing) */}
+          <section className="interactive-map-section nospacing">
+            <iframe 
+              title="Google Maps Interaktivna Lokacija"
+              src="https://maps.google.com/maps?q=Fitness%20Club%20Universum,%20Marka%20Maruli%C4%87a%202,%20Sarajevo&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              width="100%"
+              height="450"
+              style={{ border: 0, display: 'block' }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
           </section>
         </div>
       )}
