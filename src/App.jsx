@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, MapPin, Clock, CheckCircle, Quote, Menu, X, Mail } from 'lucide-react';
+import { Phone, MapPin, Clock, CheckCircle, Quote, Menu, X, Mail, Send } from 'lucide-react';
 import './App.css';
-import heroImg from './assets/hero.png';
-import weightsImg from './assets/weights.png';
-import cardioImg from './assets/cardio.png';
+
+// Using real high-quality gym photos instead of AI generated ones
+const heroImg = 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop';
+const weightsImg = 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1470&auto=format&fit=crop';
+const cardioImg = 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1470&auto=format&fit=crop';
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -281,9 +283,9 @@ function App() {
       ) : (
         /* Contact & Location Subpage */
         <div className="contact-page-wrapper">
-          {/* Contact Hero Section with Dark Google Map Screenshot effect */}
-          <section className="contact-hero">
-            <div className="map-container dark-map" style={{ pointerEvents: 'none', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
+          {/* Contact Hero Section with Dark Google Map Screenshot effect and Pinpoint */}
+          <section className="contact-hero-map" style={{ position: 'relative', height: '65vh', minHeight: '480px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', overflow: 'hidden' }}>
+            <div className="map-container dark-map" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
               <iframe 
                 title="Google Maps Background"
                 src="https://maps.google.com/maps?q=Fitness%20Club%20Universum,%20Marka%20Maruli%C4%87a%202,%20Sarajevo&t=&z=16&ie=UTF8&iwloc=&output=embed"
@@ -295,161 +297,102 @@ function App() {
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
-            <div className="contact-hero-overlay light-overlay">
+            
+            {/* Dark overlay to make text readable, but lighter in center to emphasize pinpoint */}
+            <div className="map-overlay-clean" style={{
+              position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2,
+              background: 'radial-gradient(circle at center, rgba(10, 10, 15, 0.4) 0%, rgba(10, 10, 15, 0.8) 100%)',
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'
+            }}>
+              
               <motion.div 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="contact-hero-content"
+                className="map-center-info"
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px' }}
               >
-                <span className="subtitle">Kontakt & Lokacija</span>
-                <h1>Pronađite Svoju Snagu</h1>
-                <p>Nalazimo se na lako dostupnoj lokaciji u zgradi Unipromet. Posjetite nas i započnite svoje fitnes putovanje.</p>
+                <div className="pulse-pin" style={{
+                  background: 'var(--accent-blue-light)',
+                  padding: '20px',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: '0 0 40px rgba(44, 91, 163, 0.6)'
+                }}>
+                  <MapPin size={40} color="#fff" strokeWidth={2.5} />
+                </div>
+                <h1 style={{ fontFamily: 'Oswald, sans-serif', fontSize: '3rem', color: '#fff', textTransform: 'uppercase', letterSpacing: '2px', margin: 0, textShadow: '0 4px 15px rgba(0,0,0,0.5)' }}>
+                  Fitness Club Universum
+                </h1>
+                <p style={{ color: '#ccc', letterSpacing: '3px', textTransform: 'uppercase', fontSize: '1rem', fontWeight: 600, margin: 0, textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+                  MARKA MARULIĆA 2, 71000 SARAJEVO
+                </p>
               </motion.div>
             </div>
           </section>
 
-          {/* Contact Details & Premium Form */}
-          <section className="contact-details-section">
-            <div className="details-container">
-              {/* Left Side: Info Cards & Mini Map Box */}
-              <div className="info-grid">
-                <motion.div 
-                  whileHover={{ y: -5 }}
-                  className="info-card"
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                >
-                  <div className="info-icon-wrapper">
-                    <MapPin className="info-icon" size={28} />
+          {/* Contact Details & Clean Form */}
+          <section className="contact-details-section" style={{ padding: '100px 10%', backgroundColor: 'var(--bg-color)', position: 'relative', zIndex: 5 }}>
+            <div className="clean-details-container" style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '80px', maxWidth: '1200px', margin: '0 auto', alignItems: 'start' }}>
+              
+              {/* Left Side: Contact Text & Info Boxes */}
+              <div className="contact-text-content">
+                <span className="subtitle" style={{ color: 'var(--accent-blue-light)', letterSpacing: '2px', fontSize: '0.9rem', textTransform: 'uppercase', fontWeight: 600, display: 'block', marginBottom: '15px' }}>UVIJEK SMO TU ZA VAS</span>
+                <h2 style={{ fontSize: '3.5rem', fontFamily: 'Montserrat, sans-serif', fontWeight: 800, marginBottom: '25px', lineHeight: 1.1 }}>
+                  Stupimo u <span style={{ color: 'var(--accent-blue-light)' }}>Kontakt.</span>
+                </h2>
+                <p style={{ color: 'var(--grey-text)', fontSize: '1.1rem', lineHeight: 1.6, marginBottom: '40px' }}>
+                  Imate pitanja o treninzima, cijenama ili želite posjetiti naš klub? Pošaljite nam poruku i naš tim će Vam se javiti u najkraćem roku.
+                </p>
+                
+                <div className="contact-info-boxes" style={{ display: 'flex', gap: '20px' }}>
+                  <div className="clean-info-box" style={{ flex: 1, background: 'rgba(20, 25, 35, 0.5)', border: '1px solid rgba(44, 91, 163, 0.2)', padding: '30px 25px', borderRadius: '16px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <Phone size={26} color="var(--accent-blue-light)" style={{ marginBottom: '10px' }} />
+                    <span style={{ fontSize: '0.75rem', color: '#888', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600 }}>NAZOVITE NAS</span>
+                    <strong style={{ fontSize: '1.2rem', color: '#fff' }}>033 867 591</strong>
+                    <small style={{ color: '#777', fontSize: '0.85rem' }}>Pon-Pet: 08:00 - 23:00</small>
                   </div>
-                  <div className="info-text">
-                    <h4>Adresa</h4>
-                    <p>Marka Marulića 2</p>
-                    <p>71000 Sarajevo, BiH</p>
-                    <p className="highlight">Zgrada Unipromet</p>
+                  
+                  <div className="clean-info-box" style={{ flex: 1, background: 'rgba(20, 25, 35, 0.5)', border: '1px solid rgba(44, 91, 163, 0.2)', padding: '30px 25px', borderRadius: '16px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <Mail size={26} color="var(--accent-blue-light)" style={{ marginBottom: '10px' }} />
+                    <span style={{ fontSize: '0.75rem', color: '#888', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600 }}>E-MAIL ADRESA</span>
+                    <strong style={{ fontSize: '1.1rem', color: '#fff' }}>info@universum.ba</strong>
+                    <small style={{ color: '#777', fontSize: '0.85rem' }}>Odgovaramo brzo</small>
                   </div>
-                </motion.div>
-
-                <motion.div 
-                  whileHover={{ y: -5 }}
-                  className="info-card"
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                >
-                  <div className="info-icon-wrapper">
-                    <Phone className="info-icon" size={28} />
-                  </div>
-                  <div className="info-text">
-                    <h4>Telefon</h4>
-                    <p><a href="tel:033867591">033 867 591</a></p>
-                    <p><a href="tel:062123079">062 123 079</a></p>
-                    <p className="highlight">Nazovite nas za informacije</p>
-                  </div>
-                </motion.div>
-
-                <motion.div 
-                  whileHover={{ y: -5 }}
-                  className="info-card"
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                >
-                  <div className="info-icon-wrapper">
-                    <Clock className="info-icon" size={28} />
-                  </div>
-                  <div className="info-text">
-                    <h4>Radno Vrijeme</h4>
-                    <p><strong>Pon - Pet:</strong> 08:00 - 23:00</p>
-                    <p><strong>Sub - Ned:</strong> 11:00 - 22:00</p>
-                    <p className="highlight">Radimo i vikendom</p>
-                  </div>
-                </motion.div>
-
-                <motion.div 
-                  whileHover={{ y: -5 }}
-                  className="info-card"
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                >
-                  <div className="info-icon-wrapper">
-                    <Mail className="info-icon" size={28} />
-                  </div>
-                  <div className="info-text">
-                    <h4>E-mail & Mreže</h4>
-                    <p><a href="mailto:info@universum.ba">info@universum.ba</a></p>
-                    <p>
-                      <a href="#" className="social-link" style={{ color: 'var(--accent-blue-light)', fontWeight: 'bold' }}>Facebook</a>
-                      <span style={{ margin: '0 8px', color: '#444' }}>|</span>
-                      <a href="#" className="social-link" style={{ color: 'var(--accent-blue-light)', fontWeight: 'bold' }}>Instagram</a>
-                    </p>
-                    <p className="highlight">Pratite nas na mrežama</p>
-                  </div>
-                </motion.div>
-
-                {/* Mini Interactive Google Map Card */}
-                <motion.div 
-                  whileHover={{ y: -5 }}
-                  className="info-card map-card"
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.5 }}
-                >
-                  <div className="info-icon-wrapper">
-                    <MapPin className="info-icon" size={28} />
-                  </div>
-                  <div className="info-text" style={{ width: '100%' }}>
-                    <h4>Lokacija na Mapi</h4>
-                    <div className="map-box-frame">
-                      <iframe 
-                        title="Google Maps Interaktivna Lokacija"
-                        src="https://maps.google.com/maps?q=Fitness%20Club%20Universum,%20Marka%20Maruli%C4%87a%202,%20Sarajevo&t=&z=16&ie=UTF8&iwloc=&output=embed"
-                        width="100%"
-                        height="100%"
-                        style={{ border: 0, display: 'block' }}
-                        allowFullScreen=""
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                      ></iframe>
-                    </div>
-                    <p className="highlight" style={{ marginTop: '12px' }}>Interaktivna Google Mapa</p>
-                  </div>
-                </motion.div>
+                </div>
               </div>
 
-              {/* Right Side: Message Form */}
+              {/* Right Side: Clean Message Form */}
               <motion.div 
-                className="contact-form-wrapper"
+                className="clean-form-wrapper"
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
+                style={{ background: 'rgba(20, 25, 35, 0.5)', border: '1px solid rgba(44, 91, 163, 0.2)', padding: '45px', borderRadius: '24px' }}
               >
-                <h3>Pošaljite nam poruku</h3>
-                <p className="form-desc">Imate pitanja ili želite zakazati trening? Ispunite formu ispod i javićemo Vam se u najkraćem roku.</p>
-                <form onSubmit={handleContactSubmit} className="premium-form">
-                  <div className="form-row">
-                    <div className="input-group">
-                      <input type="text" id="name" placeholder="Vaše ime" required />
-                      <label htmlFor="name">Vaše ime</label>
+                <form onSubmit={handleContactSubmit} className="clean-form" style={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
+                  <div className="form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                    <div className="input-field" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                      <label style={{ fontSize: '0.75rem', color: '#888', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600 }}>IME I PREZIME</label>
+                      <input type="text" placeholder="Jane Doe" required style={{ background: 'rgba(10, 15, 20, 0.8)', border: '1px solid rgba(255, 255, 255, 0.05)', padding: '16px', borderRadius: '10px', color: '#fff', fontSize: '1rem', outline: 'none' }} />
                     </div>
-                    <div className="input-group">
-                      <input type="email" id="email" placeholder="Vaš email" required />
-                      <label htmlFor="email">Vaš email</label>
+                    <div className="input-field" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                      <label style={{ fontSize: '0.75rem', color: '#888', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600 }}>E-MAIL ADRESA</label>
+                      <input type="email" placeholder="jane@example.com" required style={{ background: 'rgba(10, 15, 20, 0.8)', border: '1px solid rgba(255, 255, 255, 0.05)', padding: '16px', borderRadius: '10px', color: '#fff', fontSize: '1rem', outline: 'none' }} />
                     </div>
                   </div>
-                  <div className="input-group">
-                    <input type="text" id="subject" placeholder="Predmet poruke" required />
-                    <label htmlFor="subject">Predmet poruke</label>
+                  <div className="input-field" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <label style={{ fontSize: '0.75rem', color: '#888', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600 }}>PREDMET</label>
+                    <input type="text" placeholder="Opći upit" required style={{ background: 'rgba(10, 15, 20, 0.8)', border: '1px solid rgba(255, 255, 255, 0.05)', padding: '16px', borderRadius: '10px', color: '#fff', fontSize: '1rem', outline: 'none' }} />
                   </div>
-                  <div className="input-group">
-                    <textarea id="message" placeholder="Vaša poruka" rows="5" required></textarea>
-                    <label htmlFor="message">Vaša poruka</label>
+                  <div className="input-field" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <label style={{ fontSize: '0.75rem', color: '#888', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600 }}>VAŠA PORUKA</label>
+                    <textarea placeholder="Kako vam možemo pomoći?" rows="5" required style={{ background: 'rgba(10, 15, 20, 0.8)', border: '1px solid rgba(255, 255, 255, 0.05)', padding: '16px', borderRadius: '10px', color: '#fff', fontSize: '1rem', outline: 'none', resize: 'vertical' }}></textarea>
                   </div>
-                  <button type="submit" className="btn btn-submit">
-                    Pošalji Poruku
+                  <button type="submit" style={{ background: 'var(--accent-blue)', color: '#fff', padding: '18px', border: 'none', borderRadius: '10px', fontSize: '1rem', fontWeight: 'bold', letterSpacing: '2px', textTransform: 'uppercase', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px', transition: 'background 0.3s ease' }}>
+                    POŠALJI PORUKU <Send size={18} />
                   </button>
                 </form>
               </motion.div>

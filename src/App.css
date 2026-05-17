@@ -941,4 +941,59 @@
   opacity: 1;
 }
 
+/* Map Pulse Pin */
+.pulse-pin {
+  position: relative;
+}
+.pulse-pin::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-blue-light);
+  animation: pulse 2s infinite;
+  opacity: 0;
+}
+@keyframes pulse {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
 
+/* Clean Form Overrides */
+.clean-form .input-field input:focus,
+.clean-form .input-field textarea:focus {
+  border-color: var(--accent-blue-light) !important;
+  box-shadow: 0 0 15px rgba(44, 91, 163, 0.2) !important;
+}
+
+.clean-info-box:hover {
+  background: rgba(30, 35, 45, 0.7) !important;
+  border-color: var(--accent-blue-light) !important;
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+.clean-info-box {
+  transition: all 0.3s ease;
+}
+
+.clean-form-wrapper {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 992px) {
+  .clean-details-container {
+    grid-template-columns: 1fr !important;
+    gap: 50px !important;
+  }
+}
+@media (max-width: 768px) {
+  .clean-form .form-row {
+    grid-template-columns: 1fr !important;
+  }
+  .contact-info-boxes {
+    flex-direction: column;
+  }
+}
