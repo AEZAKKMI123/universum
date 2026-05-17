@@ -281,9 +281,21 @@ function App() {
       ) : (
         /* Contact & Location Subpage */
         <div className="contact-page-wrapper">
-          {/* Contact Hero Section with Dark Gym Background */}
-          <section className="contact-hero" style={{ backgroundImage: `linear-gradient(rgba(5, 5, 5, 0.75), rgba(5, 5, 5, 0.85)), url(${heroImg})` }}>
-            <div className="contact-hero-overlay">
+          {/* Contact Hero Section with Dark Google Map Screenshot effect */}
+          <section className="contact-hero">
+            <div className="map-container dark-map" style={{ pointerEvents: 'none', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
+              <iframe 
+                title="Google Maps Background"
+                src="https://maps.google.com/maps?q=Fitness%20Club%20Universum,%20Marka%20Maruli%C4%87a%202,%20Sarajevo&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+            <div className="contact-hero-overlay light-overlay">
               <motion.div 
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -403,7 +415,7 @@ function App() {
                         referrerPolicy="no-referrer-when-downgrade"
                       ></iframe>
                     </div>
-                    <p className="highlight">Interaktivna Google Mapa</p>
+                    <p className="highlight" style={{ marginTop: '12px' }}>Interaktivna Google Mapa</p>
                   </div>
                 </motion.div>
               </div>

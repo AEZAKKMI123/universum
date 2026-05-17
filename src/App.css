@@ -591,12 +591,7 @@
   height: 100%;
   border: none;
   filter: grayscale(100%) invert(92%) contrast(110%) brightness(80%);
-  opacity: 0.55;
-  transition: opacity 0.5s ease;
-}
-
-.dark-map:hover iframe {
-  opacity: 0.75;
+  opacity: 0.85;
 }
 
 .contact-hero-overlay {
@@ -617,6 +612,16 @@
   align-items: center;
   justify-content: center;
   pointer-events: none;
+}
+
+.contact-hero-overlay.light-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 5, 5, 0.4) 0%,
+    rgba(5, 5, 5, 0.1) 40%,
+    rgba(5, 5, 5, 0.1) 70%,
+    var(--bg-color) 100%
+  );
 }
 
 .contact-hero-content {
@@ -902,10 +907,8 @@
 
 /* Rounded Frame Map Card that matches Email/Address boxes */
 .info-card.map-card {
-  flex-direction: column;
   align-items: flex-start;
-  gap: 15px;
-  min-height: 310px;
+  min-height: 250px;
 }
 
 .info-card.map-card .info-text {
