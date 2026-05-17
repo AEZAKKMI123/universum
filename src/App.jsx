@@ -301,32 +301,53 @@ function App() {
             {/* Dark overlay to make text readable, but lighter in center to emphasize pinpoint */}
             <div className="map-overlay-clean" style={{
               position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2,
-              background: 'radial-gradient(circle at center, rgba(10, 10, 15, 0.4) 0%, rgba(10, 10, 15, 0.8) 100%)',
-              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'
+              background: 'radial-gradient(circle at center, rgba(10, 10, 15, 0.4) 0%, rgba(10, 10, 15, 0.8) 100%)'
             }}>
               
+              {/* Pin exactly centered on the map coordinates (50% 50%) */}
               <motion.div 
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="map-center-info"
-                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px' }}
-              >
-                <div className="pulse-pin" style={{
+                initial={{ opacity: 0, scale: 0, x: '-50%', y: '-50%' }}
+                animate={{ opacity: 1, scale: 1, x: '-50%', y: '-50%' }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="pulse-pin"
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
                   background: 'var(--accent-blue-light)',
                   padding: '20px',
                   borderRadius: '50%',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  boxShadow: '0 0 40px rgba(44, 91, 163, 0.6)'
-                }}>
-                  <MapPin size={40} color="#fff" strokeWidth={2.5} />
-                </div>
-                <h1 style={{ fontFamily: 'Oswald, sans-serif', fontSize: '3rem', color: '#fff', textTransform: 'uppercase', letterSpacing: '2px', margin: 0, textShadow: '0 4px 15px rgba(0,0,0,0.5)' }}>
+                  boxShadow: '0 0 40px rgba(44, 91, 163, 0.6)',
+                  zIndex: 10
+                }}
+              >
+                <MapPin size={40} color="#fff" strokeWidth={2.5} />
+              </motion.div>
+
+              {/* Text positioned lower so the pin stands out */}
+              <motion.div 
+                initial={{ opacity: 0, y: 40, x: '-50%' }}
+                animate={{ opacity: 1, y: 0, x: '-50%' }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                style={{
+                  position: 'absolute',
+                  top: 'calc(50% + 80px)',
+                  left: '50%',
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  alignItems: 'center', 
+                  gap: '8px',
+                  width: '100%',
+                  zIndex: 5
+                }}
+              >
+                <h1 style={{ fontFamily: 'Oswald, sans-serif', fontSize: '3rem', color: '#fff', textTransform: 'uppercase', letterSpacing: '2px', margin: 0, textShadow: '0 4px 15px rgba(0,0,0,0.8)' }}>
                   Fitness Club Universum
                 </h1>
-                <p style={{ color: '#ccc', letterSpacing: '3px', textTransform: 'uppercase', fontSize: '1rem', fontWeight: 600, margin: 0, textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+                <p style={{ color: '#ccc', letterSpacing: '3px', textTransform: 'uppercase', fontSize: '1rem', fontWeight: 600, margin: 0, textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}>
                   MARKA MARULIĆA 2, 71000 SARAJEVO
                 </p>
               </motion.div>
