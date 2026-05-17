@@ -284,8 +284,8 @@ function App() {
         /* Contact & Location Subpage */
         <div className="contact-page-wrapper">
           {/* Contact Hero Section with Dark Google Map Screenshot effect and Pinpoint */}
-          <section className="contact-hero-map" style={{ position: 'relative', height: '65vh', minHeight: '480px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', overflow: 'hidden' }}>
-            <div className="map-container dark-map" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
+          <section className="contact-hero-map">
+            <div className="map-container dark-map">
               <iframe 
                 title="Google Maps Background"
                 src="https://maps.google.com/maps?q=Fitness%20Club%20Universum,%20Marka%20Maruli%C4%87a%202,%20Sarajevo&t=&z=16&ie=UTF8&iwloc=&output=embed"
@@ -299,10 +299,7 @@ function App() {
             </div>
             
             {/* Dark overlay to make text readable, but lighter in center to emphasize pinpoint */}
-            <div className="map-overlay-clean" style={{
-              position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 2,
-              background: 'radial-gradient(circle at center, rgba(10, 10, 15, 0.4) 0%, rgba(10, 10, 15, 0.8) 100%)'
-            }}>
+            <div className="map-overlay-clean">
               
               {/* Pin exactly centered on the map coordinates (50% 50%) */}
               <motion.div 
@@ -310,19 +307,6 @@ function App() {
                 animate={{ opacity: 1, scale: 1, x: '-50%', y: '-50%' }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="pulse-pin"
-                style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  background: 'var(--accent-blue-light)',
-                  padding: '20px',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  boxShadow: '0 0 40px rgba(44, 91, 163, 0.6)',
-                  zIndex: 10
-                }}
               >
                 <MapPin size={40} color="#fff" strokeWidth={2.5} />
               </motion.div>
@@ -332,22 +316,12 @@ function App() {
                 initial={{ opacity: 0, y: 40, x: '-50%' }}
                 animate={{ opacity: 1, y: 0, x: '-50%' }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                style={{
-                  position: 'absolute',
-                  top: 'calc(50% + 80px)',
-                  left: '50%',
-                  display: 'flex', 
-                  flexDirection: 'column', 
-                  alignItems: 'center', 
-                  gap: '8px',
-                  width: '100%',
-                  zIndex: 5
-                }}
+                className="map-center-info"
               >
-                <h1 style={{ fontFamily: 'Oswald, sans-serif', fontSize: '3rem', color: '#fff', textTransform: 'uppercase', letterSpacing: '2px', margin: 0, textShadow: '0 4px 15px rgba(0,0,0,0.8)' }}>
+                <h1>
                   Fitness Club Universum
                 </h1>
-                <p style={{ color: '#ccc', letterSpacing: '3px', textTransform: 'uppercase', fontSize: '1rem', fontWeight: 600, margin: 0, textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}>
+                <p>
                   MARKA MARULIĆA 2, 71000 SARAJEVO
                 </p>
               </motion.div>
@@ -355,32 +329,32 @@ function App() {
           </section>
 
           {/* Contact Details & Clean Form */}
-          <section className="contact-details-section" style={{ padding: '100px 10%', backgroundColor: 'var(--bg-color)', position: 'relative', zIndex: 5 }}>
-            <div className="clean-details-container" style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '80px', maxWidth: '1200px', margin: '0 auto', alignItems: 'start' }}>
+          <section className="contact-details-section">
+            <div className="clean-details-container">
               
               {/* Left Side: Contact Text & Info Boxes */}
               <div className="contact-text-content">
-                <span className="subtitle" style={{ color: 'var(--accent-blue-light)', letterSpacing: '2px', fontSize: '0.9rem', textTransform: 'uppercase', fontWeight: 600, display: 'block', marginBottom: '15px' }}>UVIJEK SMO TU ZA VAS</span>
-                <h2 style={{ fontSize: '3.5rem', fontFamily: 'Montserrat, sans-serif', fontWeight: 800, marginBottom: '25px', lineHeight: 1.1 }}>
-                  Stupimo u <span style={{ color: 'var(--accent-blue-light)' }}>Kontakt.</span>
+                <span className="subtitle">UVIJEK SMO TU ZA VAS</span>
+                <h2>
+                  Stupimo u <span>Kontakt.</span>
                 </h2>
-                <p style={{ color: 'var(--grey-text)', fontSize: '1.1rem', lineHeight: 1.6, marginBottom: '40px' }}>
+                <p>
                   Imate pitanja o treninzima, cijenama ili želite posjetiti naš klub? Pošaljite nam poruku i naš tim će Vam se javiti u najkraćem roku.
                 </p>
                 
-                <div className="contact-info-boxes" style={{ display: 'flex', gap: '20px' }}>
-                  <div className="clean-info-box" style={{ flex: 1, background: 'rgba(20, 25, 35, 0.5)', border: '1px solid rgba(44, 91, 163, 0.2)', padding: '30px 25px', borderRadius: '16px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <div className="contact-info-boxes">
+                  <div className="clean-info-box">
                     <Phone size={26} color="var(--accent-blue-light)" style={{ marginBottom: '10px' }} />
-                    <span style={{ fontSize: '0.75rem', color: '#888', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600 }}>NAZOVITE NAS</span>
-                    <strong style={{ fontSize: '1.2rem', color: '#fff' }}>033 867 591</strong>
-                    <small style={{ color: '#777', fontSize: '0.85rem' }}>Pon-Pet: 08:00 - 23:00</small>
+                    <span>NAZOVITE NAS</span>
+                    <strong>033 867 591</strong>
+                    <small>Pon-Pet: 08:00 - 23:00</small>
                   </div>
                   
-                  <div className="clean-info-box" style={{ flex: 1, background: 'rgba(20, 25, 35, 0.5)', border: '1px solid rgba(44, 91, 163, 0.2)', padding: '30px 25px', borderRadius: '16px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <div className="clean-info-box">
                     <Mail size={26} color="var(--accent-blue-light)" style={{ marginBottom: '10px' }} />
-                    <span style={{ fontSize: '0.75rem', color: '#888', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600 }}>E-MAIL ADRESA</span>
-                    <strong style={{ fontSize: '1.1rem', color: '#fff' }}>info@universum.ba</strong>
-                    <small style={{ color: '#777', fontSize: '0.85rem' }}>Odgovaramo brzo</small>
+                    <span>E-MAIL ADRESA</span>
+                    <strong>info@universum.ba</strong>
+                    <small>Odgovaramo brzo</small>
                   </div>
                 </div>
               </div>
@@ -391,28 +365,27 @@ function App() {
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                style={{ background: 'rgba(20, 25, 35, 0.5)', border: '1px solid rgba(44, 91, 163, 0.2)', padding: '45px', borderRadius: '24px' }}
               >
-                <form onSubmit={handleContactSubmit} className="clean-form" style={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
-                  <div className="form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-                    <div className="input-field" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                      <label style={{ fontSize: '0.75rem', color: '#888', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600 }}>IME I PREZIME</label>
-                      <input type="text" placeholder="Jane Doe" required style={{ background: 'rgba(10, 15, 20, 0.8)', border: '1px solid rgba(255, 255, 255, 0.05)', padding: '16px', borderRadius: '10px', color: '#fff', fontSize: '1rem', outline: 'none' }} />
+                <form onSubmit={handleContactSubmit} className="clean-form">
+                  <div className="form-row">
+                    <div className="input-field">
+                      <label>IME I PREZIME</label>
+                      <input type="text" placeholder="Jane Doe" required />
                     </div>
-                    <div className="input-field" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                      <label style={{ fontSize: '0.75rem', color: '#888', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600 }}>E-MAIL ADRESA</label>
-                      <input type="email" placeholder="jane@example.com" required style={{ background: 'rgba(10, 15, 20, 0.8)', border: '1px solid rgba(255, 255, 255, 0.05)', padding: '16px', borderRadius: '10px', color: '#fff', fontSize: '1rem', outline: 'none' }} />
+                    <div className="input-field">
+                      <label>E-MAIL ADRESA</label>
+                      <input type="email" placeholder="jane@example.com" required />
                     </div>
                   </div>
-                  <div className="input-field" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    <label style={{ fontSize: '0.75rem', color: '#888', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600 }}>PREDMET</label>
-                    <input type="text" placeholder="Opći upit" required style={{ background: 'rgba(10, 15, 20, 0.8)', border: '1px solid rgba(255, 255, 255, 0.05)', padding: '16px', borderRadius: '10px', color: '#fff', fontSize: '1rem', outline: 'none' }} />
+                  <div className="input-field">
+                    <label>PREDMET</label>
+                    <input type="text" placeholder="Opći upit" required />
                   </div>
-                  <div className="input-field" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    <label style={{ fontSize: '0.75rem', color: '#888', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600 }}>VAŠA PORUKA</label>
-                    <textarea placeholder="Kako vam možemo pomoći?" rows="5" required style={{ background: 'rgba(10, 15, 20, 0.8)', border: '1px solid rgba(255, 255, 255, 0.05)', padding: '16px', borderRadius: '10px', color: '#fff', fontSize: '1rem', outline: 'none', resize: 'vertical' }}></textarea>
+                  <div className="input-field">
+                    <label>VAŠA PORUKA</label>
+                    <textarea placeholder="Kako vam možemo pomoći?" rows="5" required></textarea>
                   </div>
-                  <button type="submit" style={{ background: 'var(--accent-blue)', color: '#fff', padding: '18px', border: 'none', borderRadius: '10px', fontSize: '1rem', fontWeight: 'bold', letterSpacing: '2px', textTransform: 'uppercase', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px', transition: 'background 0.3s ease' }}>
+                  <button type="submit" className="btn-submit-clean">
                     POŠALJI PORUKU <Send size={18} />
                   </button>
                 </form>
